@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.nav-link {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-link:last-child {
+    margin-right: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 10px 0;
+}
+
+.main-nav {
+    margin-bottom: 10px;
+}
+
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.back-button:hover {
+    background-color: #ff0000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.back-button:active {
+    background-color: #e10000;
+    box-shadow: 0 5px #666;
+    transform: translateY(5px);
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.contact-info,
+.contact-form {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.contact-info h2,
+.contact-form h2 {
+    margin-top: 0;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info ul li {
+    margin-bottom: 10px;
+}
+
+.contact-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.contact-form button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #007bff;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+/* Linki autoryzacyjne */
+.auth-links {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.auth-link {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    background-color: #007bff;
+    margin-bottom: 2px;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+    background-color: #0056b3;
+}
+
+/* Dodajemy styl dla aktywnego stanu dla .auth-link */
+.auth-link:active {
+    background-color: #004080; /* Ciemniejszy odcień niż hover */
+    box-shadow: 0 3px #666; /* Mniejszy shadow niż w back-button */
+    transform: translateY(3px); /* Lekkie przesunięcie w dół */
+}
