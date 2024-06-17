@@ -1,4 +1,5 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php';
+?>
 
 
 <!DOCTYPE html>
@@ -11,11 +12,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Informacje o Lekarzu - Poradnia Lekarska</title>
-    <link rel="stylesheet" href="css_olekarzu.css">
-
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-
 <main>
     <section class="doctor-info">
         <img src="images/doctor.jpg" alt="Dr. Adam Kowalski" class="doctor-photo">
@@ -27,15 +26,5 @@
         </div>
     </section>
 </main>
-
-<footer>
-    <p class="footer-text">© 2024 MediCor Krzysztof Wronisz</p>
-</footer>
-</body>
-</html>
-</title>
-</head>
-<body>
-
 </body>
 </html>

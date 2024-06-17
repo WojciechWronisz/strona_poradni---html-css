@@ -1,12 +1,12 @@
-<?php include 'header.php'; ?>
-
+<?php include 'header.php';
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kontakt - Poradnia Kardiologiczna</title>
-  <link rel="stylesheet" href="css_kontakt.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
 <main>
@@ -36,8 +36,8 @@
   </section>
   <button onclick="goBack()" class="back-button">Powrót</button>
 </main>
-<footer>
-  <p class="footer-text">© 2024 MediCor Krzysztof Wronisz</p>
-</footer>
+
 </body>
 </html>
+<?php include 'footer.php';
+?>

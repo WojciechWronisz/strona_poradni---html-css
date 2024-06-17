@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twoja Strona</title>
-    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
 <header id="main-header">
@@ -20,4 +20,5 @@
         <a href="kontakt.php" class="nav-link">Kontakt</a>
     </nav>
 </header>
+
 

@@ -8,20 +8,7 @@ body {
     padding: 0;
 }
 
-/* Nagłówek główny */
-#main-header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
 
-header h1 {
-    margin: 10px 0;
-}
 
 /* Nawigacja główna */
 .main-nav .nav-link {
@@ -93,16 +80,6 @@ main {
     margin-top: 0;
 }
 
-/* Stopka */
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #007bff;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
 /* Linki autoryzacyjne */
 
 .auth-links {

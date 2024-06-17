@@ -56,15 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css_logowanie.css">
-    <title>Logowanie i Rejestracja</title>
-</head>
-<body>
+
 <main>
     <div class="auth-container">
         <div id="login" class="auth-form">
@@ -99,8 +91,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="#register" class="auth-link">Zarejestruj</a>
     </div>
 </main>
-<footer>
-    <p class="footer-text">© 2024 MediCor Krzysztof Wronisz</p>
-</footer>
-</body>
-</html>
+<?php include 'footer.php';
+?>
