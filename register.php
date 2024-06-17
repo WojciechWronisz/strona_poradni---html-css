@@ -1,4 +1,4 @@
-<?php
+<?php include 'header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_REQUEST['action']) && $_REQUEST['action'] == "login") {
         // Logowanie
@@ -65,16 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Logowanie i Rejestracja</title>
 </head>
 <body>
-<header id="main-header">
-    <button onclick="history.back()" class="back-button">Powrót</button>
-    <nav class="main-nav">
-        <a href="html_poradnia.php" class="nav-link">Strona Główna</a>
-        <a href="aktualnosci.php?action=login" class="nav-link">Zaloguj</a>
-        <a href="aktualnosci.php?action=register" class="nav-link">Zarejestruj</a>
-        <a href="o_lekarzu.php" class="nav-link">Informacje o Lekarzu</a>
-        <a href="kontakt.php" class="nav-link">Kontakt</a>
-    </nav>
-</header>
 <main>
     <div class="auth-container">
         <div id="login" class="auth-form">
