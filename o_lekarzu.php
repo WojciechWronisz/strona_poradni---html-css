@@ -17,12 +17,12 @@
 <body>
 <main>
     <section class="doctor-info">
-        <img src="images/doctor.jpg" alt="Dr. Adam Kowalski" class="doctor-photo">
+        <img src="photos /tata.jpg" alt="Lek. Krzysztof Wronisz" class="doctor-photo">
         <div class="doctor-details">
-            <h2>Dr. Adam Kowalski</h2>
-            <p>Dr. Adam Kowalski jest specjalistą kardiologii z wieloletnim doświadczeniem. Ukończył studia medyczne na Uniwersytecie Medycznym w Gdańsku, a następnie specjalizację z kardiologii w Klinice Kardiologii w Warszawie.</p>
-            <p>Dr. Kowalski zajmuje się diagnostyką i leczeniem chorób serca, ze szczególnym uwzględnieniem niewydolności serca i nadciśnienia tętniczego. Regularnie uczestniczy w konferencjach i szkoleniach, aby być na bieżąco z najnowszymi osiągnięciami w dziedzinie kardiologii.</p>
-            <p>W wolnym czasie dr. Kowalski interesuje się sportem, podróżami oraz literaturą naukową.</p>
+            <h2>Lek. Krzysztof Wronisz</h2>
+            <p>Krzysztof Wronisz, lekarz internista drugiego stopnia oraz specjalista kardiolog, ma za sobą bogate doświadczenie zawodowe. Początkowo pracował przez wiele lat jako lekarz rodzinny, a obecnie poświęca się wyłącznie kardiologii w Kętrzynie.</p>
+            <p>Ukończył studia na Gdańskim Uniwersytecie Medycznym, zdobywając dodatkowe kwalifikacje specjalistyczne w Olsztynie. Jego praktyczne podejście do medycyny oraz zaangażowanie w opiekę zdrowotną sprawiają, że jest cenionym specjalistą w swojej dziedzinie.</p>
+            <p>Jego profesjonalizm, troska o pacjentów oraz nieustanne dążenie do doskonalenia umiejętności sprawiają, że jest wsparciem dla osób zmagających się z chorobami serca w regionie Kętrzyna.</p>
         </div>
     </section>
 </main>
