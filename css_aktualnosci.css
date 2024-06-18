@@ -1,7 +1,6 @@
 /* Resetowanie domyślnych styli dla wszystkich elementów */
 * {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -104,14 +103,6 @@ p {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
-
-.auth-link {
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    background-color: #007bff; /* Niebieski kolor tła */
-    margin-bottom: 2px;
 }
 
 .auth-link:hover {

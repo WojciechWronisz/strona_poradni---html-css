@@ -28,18 +28,61 @@
     </section>
     <section class="contact-form">
         <h2>Formularz Kontaktowy</h2>
-        <form action="submit_form.php" method="post">
-            <label for="name">Imię i nazwisko:</label>
-            <input type="text" id="name" name="name" required>
+        <form action="" method="post">
+            <label for="name">Imię:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="surname">Nazwisko:</label>
+            <input type="text" id="surname" name="surname" required><br><br>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required><br><br>
 
-            <label for="message">Wiadomość:</label>
-            <textarea id="message" name="message" required></textarea>
+            <label for="message">Wiadomość:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
 
             <button type="submit">Wyślij</button>
         </form>
+
+        <?php
+        // Połączenie z bazą danych
+        $db = new mysqli("localhost", "Wojtek", "123", "Pacjenci");
+
+        // Sprawdzenie połączenia z bazą danych
+        if ($db->connect_error) {
+            die("Connection failed: " . $db->connect_error);
+        }
+
+        // Obsługa formularza po jego przesłaniu
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Pobranie danych z formularza
+            $name = $_POST['name'];
+            $surname = $_POST['surname'];
+            $email = $_POST['email'];
+            $message = $_POST['message'];
+
+            // Zabezpieczenie przed SQL Injection (przy użyciu prepared statements)
+            $query = "INSERT INTO formularz (imie, nazwisko, email, wiadomosc, data_wyslania) VALUES (?, ?, ?, ?, NOW())";
+            $stmt = $db->prepare($query);
+
+            // Przypisanie wartości i wykonanie zapytania
+            $stmt->bind_param("ssss", $name, $surname, $email, $message);
+            $stmt->execute();
+
+            // Sprawdzenie czy zapytanie się powiodło
+            if ($stmt->affected_rows > 0) {
+                echo "<p class='success'>Dane zostały pomyślnie zapisane.</p>";
+            } else {
+                echo "<p class='error'>Wystąpił błąd podczas zapisywania danych.</p>";
+            }
+
+            // Zamknięcie zapytania
+            $stmt->close();
+        }
+
+        // Zamknięcie połączenia z bazą danych
+        $db->close();
+        ?>
     </section>
     <section class="contact-map">
         <h2>Lokalizacja</h2>

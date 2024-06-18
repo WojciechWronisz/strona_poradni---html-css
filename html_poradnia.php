@@ -7,6 +7,24 @@
         <img src="photos /image000002.jpeg" alt="Wejście">
     </div>
 
+    <?php
+    // Połączenie z bazą danych
+    $dsn = 'mysql:host=localhost;dbname=Pacjenci;charset=utf8';
+    $username = 'Wojtek';
+    $password = '123';
+
+    try {
+        $pdo = new PDO($dsn, $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Pobranie danych z tabeli cennik_uslug
+        $stmt = $pdo->query('SELECT * FROM cennik_uslug');
+        $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo 'Błąd połączenia z bazą danych: ' . $e->getMessage();
+    }
+    ?>
+
     <h1>Cennik</h1>
     <table class="price-list">
         <thead>
@@ -16,62 +34,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Podstawowa wizyta</td>
-            <td>150 zł</td>
-        </tr>
-        <tr>
-            <td>Konsultacja specjalistyczna</td>
-            <td>250 zł</td>
-        </tr>
-        <tr>
-            <td>Badanie diagnostyczne</td>
-            <td>350 zł</td>
-        </tr>
-        <tr>
-            <td>Porada</td>
-            <td>150 zł</td>
-        </tr>
-        <tr>
-            <td>Porada – powtórzenie leków</td>
-            <td>50 zł</td>
-        </tr>
-        <tr>
-            <td>Badanie echokardiograficzne</td>
-            <td>250 zł</td>
-        </tr>
-        <tr>
-            <td>Próba wysiłkowa EKG</td>
-            <td>250 zł</td>
-        </tr>
-        <tr>
-            <td>Holter EKG z opisem i omówieniem</td>
-            <td>250 zł</td>
-        </tr>
-        <tr>
-            <td>Holter RR z opisem i omówieniem</td>
-            <td>250 zł</td>
-        </tr>
-        <tr>
-            <td>Zaświadczenie – orzeczenie</td>
-            <td>100 zł</td>
-        </tr>
-        <tr>
-            <td>EKG spoczynkowe (bez opisu)</td>
-            <td>50 zł</td>
-        </tr>
-        <tr>
-            <td>EKG spoczynkowe z opisem</td>
-            <td>70 zł</td>
-        </tr>
-        <tr>
-            <td>Porada + echo</td>
-            <td>300 zł</td>
-        </tr>
-        <tr>
-            <td>Porada + próba wysiłkowa EKG</td>
-            <td>300 zł</td>
-        </tr>
+        <?php foreach ($services as $service): ?>
+            <tr>
+                <td><?= htmlspecialchars($service['usluga']) ?></td>
+                <td><?= htmlspecialchars($service['cena']) ?> zł</td>
+            </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
 
@@ -87,44 +55,32 @@
     </form>
 
     <?php
-    // Tablica usług do filtrowania
-    $services = array(
-        array('usluga' => 'Podstawowa wizyta', 'cena' => '150 zł'),
-        array('usluga' => 'Konsultacja specjalistyczna', 'cena' => '250 zł'),
-        array('usluga' => 'Badanie diagnostyczne', 'cena' => '350 zł')
-    );
-
-    // Pobierz wybór użytkownika z formularza
+    // Obsługa formularza filtrowania
     if (isset($_GET['price-filter'])) {
         $filter = $_GET['price-filter'];
 
-        // Przetwarzaj filtrowanie na podstawie wyboru użytkownika
+        // Filtrowanie na podstawie wyboru użytkownika
         switch ($filter) {
             case 'below-200':
-                $filteredServices = array_filter($services, function ($service) {
-                    $price = intval(str_replace([' ', 'zł'], '', $service['cena']));
-                    return $price < 200;
-                });
+                $stmt = $pdo->prepare('SELECT * FROM cennik_uslug WHERE cena < 200');
                 break;
             case '200-300':
-                $filteredServices = array_filter($services, function ($service) {
-                    $price = intval(str_replace([' ', 'zł'], '', $service['cena']));
-                    return $price >= 200 && $price <= 300;
-                });
+                $stmt = $pdo->prepare('SELECT * FROM cennik_uslug WHERE cena >= 200 AND cena <= 300');
                 break;
             case 'above-300':
-                $filteredServices = array_filter($services, function ($service) {
-                    $price = intval(str_replace([' ', 'zł'], '', $service['cena']));
-                    return $price > 300;
-                });
+                $stmt = $pdo->prepare('SELECT * FROM cennik_uslug WHERE cena > 300');
                 break;
             case 'all':
             default:
-                $filteredServices = $services;
+                $stmt = $pdo->query('SELECT * FROM cennik_uslug');
                 break;
         }
 
-        // Wyświetlenie wyników filtrowania jako HTML
+        // Wykonaj zapytanie
+        $stmt->execute();
+        $filteredServices = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Wyświetlenie wyników filtrowania
         echo '<h2>Wyniki filtracji:</h2>';
         echo '<table class="price-list">';
         echo '<thead><tr><th>Usługa</th><th>Cena</th></tr></thead>';
@@ -132,13 +88,12 @@
         foreach ($filteredServices as $service) {
             echo '<tr>';
             echo '<td>' . htmlspecialchars($service['usluga']) . '</td>';
-            echo '<td>' . htmlspecialchars($service['cena']) . '</td>';
+            echo '<td>' . htmlspecialchars($service['cena']) . ' zł</td>';
             echo '</tr>';
         }
         echo '</tbody></table>';
     }
     ?>
-
 </main>
 
 <?php include 'footer.php'; ?>

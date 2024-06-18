@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = $db->prepare("INSERT INTO pacjenci (Imię, Nazwisko, Email, Hasło) VALUES (?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO pacjenci (Imię, Nazwisko, PESEL, Numer_Telefonu, Miejscowość, Adres Email, Hasło) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $imie, $nazwisko, $email, $passwordHash);
 
         if ($stmt->execute()) {

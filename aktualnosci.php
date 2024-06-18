@@ -1,5 +1,5 @@
-<?php include 'header.php';
-?>
+<?php include 'header.php'; ?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -10,24 +10,35 @@
 </head>
 <body>
 <div class="news-container">
-    <article class="news-item">
-        <h2>Zmiana godzin przyjęć</h2>
-        <p>Uprzejmie informujemy, że od dnia 15 maja zmieniają się godziny przyjęć w naszej poradni. Nowe godziny to 8:00 - 16:00 od poniedziałku do piątku.</p>
-        <p>Data publikacji: 14-05-2024</p>
-    </article>
-    <article class="news-item">
-        <h2>Nowy specjalista w naszym zespole</h2>
-        <p>Z przyjemnością informujemy, że do naszego zespołu dołączył nowy specjalista kardiologii, dr Adam Kowalski. Dr Kowalski będzie przyjmował pacjentów od czerwca.</p>
-        <p>Data publikacji: 10-05-2024</p>
-    </article>
-    <article class="news-item">
-        <h2>Bezpłatne badania przesiewowe</h2>
-        <p>Informujemy, że w dniach 20-25 maja przeprowadzamy bezpłatne badania przesiewowe w kierunku cukrzycy. Zapraszamy do zapisów przez naszą stronę internetową lub telefonicznie.</p>
-        <p>Data publikacji: 05-05-2024</p>
-    </article>
+    <?php
+    // Połączenie z bazą danych
+    $dsn = 'mysql:host=localhost;dbname=Pacjenci;charset=utf8';
+    $username = 'Wojtek';
+    $password = '123';
+
+    try {
+        $pdo = new PDO($dsn, $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Pobranie danych z tabeli aktualnosci
+        $stmt = $pdo->query('SELECT * FROM aktualnosci');
+        $news = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Wyświetlenie aktualności
+        foreach ($news as $new) {
+            echo '<article class="news-item">';
+            echo '<h2>' . htmlspecialchars($new['tytul']) . '</h2>';
+            echo '<p>' . htmlspecialchars($new['zawartosc']) . '</p>';
+            // Jeśli nie masz daty publikacji, nie wyświetlamy tego pola
+            echo '</article>';
+        }
+    } catch (PDOException $e) {
+        echo 'Błąd połączenia z bazą danych: ' . $e->getMessage();
+    }
+    ?>
 </div>
 
 </body>
 </html>
-<?php include 'footer.php';
-?>
+
+<?php include 'footer.php'; ?>
