@@ -28,6 +28,50 @@
             <td>Badanie diagnostyczne</td>
             <td>350 zł</td>
         </tr>
+        <tr>
+            <td>Porada</td>
+            <td>150 zł</td>
+        </tr>
+        <tr>
+            <td>Porada – powtórzenie leków</td>
+            <td>50 zł</td>
+        </tr>
+        <tr>
+            <td>Badanie echokardiograficzne</td>
+            <td>250 zł</td>
+        </tr>
+        <tr>
+            <td>Próba wysiłkowa EKG</td>
+            <td>250 zł</td>
+        </tr>
+        <tr>
+            <td>Holter EKG z opisem i omówieniem</td>
+            <td>250 zł</td>
+        </tr>
+        <tr>
+            <td>Holter RR z opisem i omówieniem</td>
+            <td>250 zł</td>
+        </tr>
+        <tr>
+            <td>Zaświadczenie – orzeczenie</td>
+            <td>100 zł</td>
+        </tr>
+        <tr>
+            <td>EKG spoczynkowe (bez opisu)</td>
+            <td>50 zł</td>
+        </tr>
+        <tr>
+            <td>EKG spoczynkowe z opisem</td>
+            <td>70 zł</td>
+        </tr>
+        <tr>
+            <td>Porada + echo</td>
+            <td>300 zł</td>
+        </tr>
+        <tr>
+            <td>Porada + próba wysiłkowa EKG</td>
+            <td>300 zł</td>
+        </tr>
         </tbody>
     </table>
 

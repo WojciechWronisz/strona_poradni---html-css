@@ -1,33 +1,35 @@
 <?php
 session_start();
-
 include 'header.php';
 
-// Połączenie z bazą danych
+// Enable error reporting (for development, disable in production)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Database connection
 $db = new mysqli("localhost", "Wojtek", "123", "Pacjenci");
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['action'] == "login") {
-        // Filtruj i pobierz dane wejściowe
+    $action = $_POST['action'] ?? '';
+
+    if ($action == "login") {
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'];
 
-        // Przygotowanie zapytania
         $stmt = $db->prepare("SELECT * FROM pacjenci WHERE Email = ? LIMIT 1");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         $userRow = $result->fetch_assoc();
 
-        // Sprawdzenie poprawności hasła
-        if ($userRow && password_verify($password, $userRow['Haslo'])) {
-            // Ustawianie zmiennych sesji
+        if ($userRow && password_verify($password, $userRow['Hasło'])) {
+            session_regenerate_id(true); // Prevent session fixation
             $_SESSION['user_id'] = $userRow['Indeks'];
             $_SESSION['user_email'] = $userRow['Email'];
-            header("Location: moj_profil.php"); // Przekierowanie po zalogowaniu
+            header("Location: moj_profil.php");
             exit;
         } else {
             $_SESSION['error_message'] = "Błędny login lub hasło";
@@ -35,9 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-    } elseif ($_POST['action'] == "register") {
-        $imie = $_POST['name'];
-        $nazwisko = $_POST['surname'];
+    } elseif ($action == "register") {
+        $imie = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+        $nazwisko = filter_var($_POST['surname'], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'];
         $passwordRepeat = $_POST['passwordRepeat'];
@@ -68,10 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssss", $imie, $nazwisko, $email, $passwordHash);
 
         if ($stmt->execute()) {
+            session_regenerate_id(true);
             $_SESSION['user_id'] = $stmt->insert_id;
             $_SESSION['user_email'] = $email;
             $_SESSION['success_message'] = "Konto utworzono poprawnie!";
-            header("Location: moj_profil.php"); // Przekierowanie po rejestracji
+            header("Location: moj_profil.php");
             exit();
         } else {
             $_SESSION['error_message'] = "Coś poszło nie tak: " . $stmt->error;
@@ -80,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $stmt->close();
-    } elseif ($_POST['action'] == "logout") {
+    } elseif ($action == "logout") {
         session_destroy();
         header("Location: register.php");
         exit();
